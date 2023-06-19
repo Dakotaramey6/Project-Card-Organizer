@@ -1,0 +1,52 @@
+html {
+  background-image: linear-gradient(to left, #201576, #6051c0);
+  color: rgba(251, 251, 248, 0.87);
+}
+
+header {
+  text-align: center;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#app {
+  display: inline-flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+h2 {
+  text-decoration: underline;
+}
+
+textarea {
+  height: 150px;
+  width: 110px;
+  resize: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #303030;
+  background-color: rgba(240, 248, 255, 0.868);
+}
+
+main div {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+div {
+  width: 110px;
+}
+
+#innercard {
+  position: relative;
+  width: 110px;
+}
+
+hr {
+  border: 1px dotted;
+}
