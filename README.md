@@ -1,4 +1,4 @@
-# Project Card Organizer V1.0
+# Project Card Organizer V1.1
 
 ## How to use
 
@@ -12,7 +12,7 @@ Just download the files (Script.js, index.html, Style.css and Buttons.css) and r
 
 ### Future Plans
 
-- Local Storage
+- Local Storage - 90% completed
 - Naming your Project
 - Host on a web server
 - IDS for the created divs

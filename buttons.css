@@ -1,6 +1,13 @@
 /*BUTTON SECTION*/
+.buttons {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
 #addCard,
-#startover {
+#startover,
+#savecard {
   align-self: center;
   background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
   border: 0;
@@ -26,12 +33,15 @@
 #startover:active,
 #startover:hover,
 #addCard:hover,
-#addCard:active {
+#addCard:active,
+#savecard:active,
+#savecard:hover {
   outline: 0;
 }
 
 #startover span,
-#addCard span {
+#addCard span,
+#savecard span {
   background-color: rgb(5, 6, 45);
   padding: 16px 24px;
   border-radius: 6px;
@@ -41,7 +51,8 @@
 }
 
 #startover:hover span,
-#addCard:hover span {
+#addCard:hover span,
+#savecard:hover span {
   background: none;
 }
 

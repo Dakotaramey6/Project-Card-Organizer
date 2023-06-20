@@ -2,12 +2,22 @@ html {
   background-image: linear-gradient(to left, #201576, #6051c0);
   color: rgba(251, 251, 248, 0.87);
 }
+h1 {
+  width: 50%;
+  font-size: 60px;
+  font-style: italic;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
 
 header {
   text-align: center;
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
+  position: relative;
+  height: 100px;
 }
 
 #app {

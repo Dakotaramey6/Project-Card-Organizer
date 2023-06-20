@@ -6,6 +6,8 @@ const planning = document.getElementById('planning');
 const inProgress = document.getElementById('inprogress');
 const testing = document.getElementById('testing');
 const completed = document.getElementById('completed');
+const save = document.getElementById('savecard');
+const cardTracker = []; //tracks how many cards are on board and stores then into an array
 
 class CreateCard {
   //class that is used as the blueprint in making each card
@@ -25,6 +27,7 @@ class CreateCard {
     this.createdCard.id = 'innercard';
     this.moveBack.id = 'back';
     this.moveForward.id = 'forward';
+    this.text.innerText = '';
     this.moveForward.classList.toggle('forwardbtn');
     this.moveBack.classList.toggle('backbtn');
     this.remove.classList.toggle('rmbtn');
@@ -38,20 +41,19 @@ class CreateCard {
     this.createdCard.appendChild(this.remove).innerText = 'Delete';
   }
   removeElement() {
+    //A method that removes the div that is selected
     this.createdCard.remove();
   }
 }
 
-addCard.addEventListener('click', () => {
+const addCards = () => {
   let addedCard = new CreateCard(); //each click creates new div or object in the DOM
   addedCard.assignValues();
   addedCard.appendDiv();
 
   //creates var that pull from the class making the code more readable and maintainable
-  let cardToMove = addedCard.createdCard;
-  let forward = addedCard.moveForward;
-  let back = addedCard.moveBack;
-  let counter = addedCard.count;
+  const forward = addedCard.moveForward;
+  const back = addedCard.moveBack;
   const rmcard = addedCard.remove;
 
   //onclick removes the card element using the createCard method RemoveElement()
@@ -61,22 +63,22 @@ addCard.addEventListener('click', () => {
 
   //event for moving div forward
   forward.addEventListener('click', () => {
-    switch (counter) {
+    switch (addedCard.count) {
       case 0:
-        planning.appendChild(cardToMove);
-        counter++;
+        planning.appendChild(addedCard.createdCard);
+        addedCard.count++;
         break;
       case 1:
-        inProgress.appendChild(cardToMove);
-        counter++;
+        inProgress.appendChild(addedCard.createdCard);
+        addedCard.count++;
         break;
       case 2:
-        testing.appendChild(cardToMove);
-        counter++;
+        testing.appendChild(addedCard.createdCard);
+        addedCard.count++;
         break;
       case 3:
-        completed.appendChild(cardToMove);
-        counter++;
+        completed.appendChild(addedCard.createdCard);
+        addedCard.count++;
         break;
       default:
         alert('Cannot move this card forward anymore');
@@ -84,35 +86,50 @@ addCard.addEventListener('click', () => {
   });
   //event to move div back
   back.addEventListener('click', () => {
-    switch (counter) {
+    switch (addedCard.count) {
       case 1:
-        freshCard.appendChild(cardToMove);
-        counter--;
+        freshCard.appendChild(addedCard.createdCard);
+        addedCard.count--;
         break;
       case 2:
-        planning.appendChild(cardToMove);
-        counter--;
+        planning.appendChild(addedCard.createdCard);
+        addedCard.count--;
         break;
       case 3:
-        inProgress.appendChild(cardToMove);
-        counter--;
+        inProgress.appendChild(addedCard.createdCard);
+        addedCard.count--;
         break;
       case 4:
-        testing.appendChild(cardToMove);
-        counter--;
+        testing.appendChild(addedCard.createdCard);
+        addedCard.count--;
         break;
       default:
         alert('Cannot move this card back anymore');
     }
   });
-  //localStorage.setItem('cardToSave', JSON.stringify(cardToMove));
-});
+  save.addEventListener('click', () => {
+    cardTracker.push(addedCard);
+    for (let i = 0; i < cardTracker.length; i++) {
+      localStorage.setItem('cardToSave', JSON.stringify(cardTracker)) || [];
+    }
+  });
+};
 
-/*function getData() {
-  freshCard.innerHTML = JSON.parse(localStorage.getItem('cardToSave')); //Leaving off here
+//uses Local storage to parse the JSON then iterates over the values using a forEach iterator
+function getData() {
+  let getCardValues = JSON.parse(localStorage.getItem('cardToSave'));
+  getCardValues.forEach(addCards);
+}
+
+//event listener that takes the function of addCards and gets the data from the CreateCard Class and puts it on screen
+addCard.addEventListener('click', addCards);
+
+//pulls data from local storage if applicable
+if (localStorage.length > 0) {
+  window.addEventListener('load', getData);
 }
 
 startover.addEventListener('click', () => {
   localStorage.clear();
   location.reload();
-});*/
+});
